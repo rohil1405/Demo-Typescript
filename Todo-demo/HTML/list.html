@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List || Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../CSS/list.css">
+</head>
+<body>
+    <header>
+        <div id="nav">
+            <h2>ProductHub</h2>
+            <h3><a href="index.html" id="home">Home</a></h3>
+            <h3><a href='updateProfile.html' id='updateProfile'>Update Profile</a></h3>
+            <h3><a href = 'addtocart.html' id='viewcart'>View Cart (<span id="cartTotal">0</span>)</a></h3>
+        </div>
+        <div>
+            <select id="limit" onchange="processData()">
+                <option value="30">All</option>
+                <option value="50">50</option>
+                <option value="75">75</option>
+                <option value="100">100</option>
+            </select>
+        </div>
+        <div>
+            <select id="filter" onchange="processData()">
+                <option value="ASC">ASC</option>
+                <option value="DESC">DESC</option>
+            </select>
+        </div>
+        <div>
+            <select id="category">
+                <option value="all">All</option>
+                <option value="smartphones">smartphones</option>
+                <option value="laptops">laptops</option>
+                <option value="fragrances">fragrances</option>
+                <option value="skincare">skincare</option>
+                <option value="groceries">groceries</option>
+                <option value="home-decoration">home-decoration</option>
+                <option value="furniture">furniture</option>
+                <option value="tops">tops</option>
+                <option value="womens-dresses">womens-dresses</option>
+                <option value="womens-shoes">womens-shoes</option>
+                <option value="mens-watches	">mens-watches</option>
+                <option value="womens-bags">womens-bags</option>
+                <option value="means-shoes">means-shoes</option>
+                <option value="womens-jewellery">womens-jewellery</option>
+                <option value="sunglasses">sunglasses</option>
+                <option value="automotive">automotive</option>
+                <option value="motorcycle">motorcycle</option>
+                <option value="lighting">lighting</option>
+            </select>
+            <input type="text" id="search" placeholder="Search here"> 
+            <i id='logout' class="fa">&#xf08b;</i>
+        </div>
+    </header>
+
+    <section id="loader">
+        <div class="lds-dual-ring"></div>
+    </section>
+
+    <div id="data"> </div>
+
+    <script src="../TS/list.js"></script>
+</body>
+</html>

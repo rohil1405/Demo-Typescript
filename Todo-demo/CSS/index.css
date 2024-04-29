@@ -1,0 +1,72 @@
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0%;
+}
+
+header {
+    display: flex;
+    background-color: rgb(235, 210, 135);
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+#logout {
+    font-size: 100px;
+    cursor: pointer;
+}
+
+#header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    text-decoration: none;
+}
+
+#todo,
+#home,
+#updateProfile {
+    text-decoration: none;
+    color: black;
+}
+
+button {
+    background-color: skyblue;
+    padding: 7px;
+    border-radius: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-size: large;
+    align-items: center;
+    text-align: center;
+}
+
+#logout {
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 6px;
+    margin-right: 50px;
+}
+
+table,
+tr,
+th,
+td {
+    border: 2px solid black;
+    border-collapse: collapse;
+    padding: 20px;
+    margin: 0 auto;
+    font-size: 25px;
+}
+
+thead {
+    background-color: yellowgreen;
+}
+
+#table {
+    margin-top: 100px;
+}

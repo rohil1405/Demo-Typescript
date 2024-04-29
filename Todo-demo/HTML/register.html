@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="../CSS/register.css">
+</head>
+
+<body>
+    <header id="register">
+        <h1>Registration</h1>
+        <hr>
+        <form>
+            <div id="name">
+                <input id="fullname" type="text" placeholder="Enter your full name" required>
+            </div>
+            <div id="mail">
+                <input id="email" type="email" placeholder="Enter your email" required>
+            </div>
+            <div id="pass">
+                <input id="password" type="password" placeholder="Enter a password" required>
+            </div>
+            <div id="gen">
+                <label>Gender:</label>
+                <input type="radio" id="male">
+                <label for="male">Male</label>
+                <input type="radio" id="female">
+                <label for="female">Female</label>
+            </div>
+            <div id="phone">
+                <input id="phonenumber" type="tel" placeholder="Enter your phone number" pattern="^\d{10}$" required title="Phone number should be 10 digits long">
+            </div>
+            <p>
+                Have an account?
+                <strong onclick="button('login')">Log in</strong>
+            </p>
+            <button id="rbtn" type="button">Register</button>
+        </form>
+    </header>
+
+    <script src="../TS/register.js"></script>
+</body>
+
+</html>

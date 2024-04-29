@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="../CSS/register.css">
+</head>
+
+<body>
+    <header id="register">
+        <h1>Update Profile</h1>
+        <hr>
+        <form>
+            <div id="name">
+                <input id="fullname" type="text" placeholder="Enter your full name" required>
+            </div>
+            <div id="mail">
+                <input id="email" type="email" placeholder="Enter your email" required>
+            </div>
+            <div id="phone">
+                <input id="phonenumber" type="tel" placeholder="Enter your phone number" pattern="^\d{10}$" required title="Phone number should be 10 digits long">
+            </div>
+            <button id="rbtn" type="button">Update</button>
+        </form>
+    </header>
+
+    <script src="../TS/register.js"></script>
+</body>
+
+</html>

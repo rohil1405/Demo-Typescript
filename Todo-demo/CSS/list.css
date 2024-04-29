@@ -1,0 +1,140 @@
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0%;
+}
+
+#logout {
+    font-size: 35px;
+    cursor: pointer;
+}
+
+header {
+    display: flex;
+    background-color: yellowgreen;
+    align-items: center;
+    justify-content: space-between;
+    height: 55px;
+}
+
+#nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    text-decoration: none;
+}
+
+#home,
+#updateProfile {
+    text-decoration: none;
+    color: black;
+}
+
+#search,
+#category {
+    border-radius: 7px;
+    align-items: center;
+    font-size: 16px;
+    width: 180px;
+    margin-right: 50px;
+    padding: 6px;
+}
+
+#filter {
+    border-radius: 7px;
+    align-items: center;
+    font-size: 16px;
+    width: 80px;
+    margin-right: 50px;
+    padding: 6px;
+}
+
+#limit {
+    border-radius: 7px;
+    align-items: center;
+    font-size: 16px;
+    width: 60px;
+    margin-right: 50px;
+    padding: 6px;
+}
+
+img {
+    height: 250px;
+    width: 250px;
+}
+
+#box {
+    width: 250px;
+    margin: 20px;
+    border-radius: 3px;
+    border: 1px solid black;
+    cursor: pointer;
+    height: 300px;
+    text-align: center;
+    box-shadow: 0 0 10px black;
+}
+
+#box:hover {
+    transition: 0.1s;
+    transform: translateY(-10px)
+}
+
+#data {
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px, 100px;
+}
+
+#viewcart {
+    text-decoration: none;
+    color: black;
+}
+
+#complete {
+    width: 100%;
+}
+
+#cart {
+    background-color: skyblue;
+}
+
+.lds-dual-ring {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    justify-content: center;
+    margin-left: 46%;
+}
+
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 60%;
+    border: 6px solid yellowgreen;
+    border-color: yellowgreen transparent yellowgreen transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(60deg);
+    }
+    50% {
+        transform: rotate(120deg);
+    }
+    75% {
+        transform: rotate(240deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text || Analyzer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../CSS/textanalyzer.css">
+</head>
+<body>
+    <header>
+        <div id="header">
+            <h3>Text Analyzer</h3>
+            <h3><a href="index.html" id="home">Home</a></h3>
+            <h3><a href="updateProfile.html" id="up">Update Profile</a></h3>
+        </div>
+        <div>
+            <i id='logout' class="fa">&#xf08b;</i>
+        </div>
+    </header>
+    <div id="main">
+        <button id="darkLight">Dark</button>
+        <h1 id="title">Text Analyzer</h1><br>
+        <textarea id="text" placeholder="Enter a Text" cols="60" rows="4"></textarea> 
+        <div>
+            <div>
+                <button id="uppercase">Uppercase</button>
+                <button id="lowercase">Lowercase</button>
+                <button id="trim">Trim Text</button>
+                <button id="clear">ClearText</button>
+                <button id="copy">Copy</button>
+            </div>
+            <div>
+                <button id="captial">Captial</button>
+                <button id="res">Remove ESpace</button>
+                <!-- <button id="preview">Preview</button> -->
+            </div>
+        </div><br>
+        <div id="analyzer">
+            <p id="report"></p><br>
+            <h4 id="preview"></h4>
+        </div>
+       
+    </div> 
+    <script src="../TS/textanalyzer.js"></script>
+</body>
+</html>

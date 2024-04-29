@@ -1,0 +1,32 @@
+* {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#border {
+    border: 1.4px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 200px;
+    background-color: skyblue;
+    text-align: center;
+    box-shadow: 0 0 8px black;
+}
+
+#changepass {
+    border-radius:7px;
+    background-color: whitesmoke;
+    font-size: 14px;
+    padding: 3px;
+    margin-top: 10px;
+    padding: 5px;
+}
+
+#email {
+    font-size: 18px;
+    border-radius: 6px;
+}
+#mail {
+    font-size: 20px;
+}
