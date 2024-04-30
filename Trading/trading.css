@@ -44,3 +44,23 @@ img {
     margin: 0 auto;
     flex-wrap: wrap;
 }
+
+#more,
+#less {
+    background-color: blanchedalmond;
+    padding: 6px;
+    font-size: 15px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 55px;
+    position: sticky;
+    bottom: 0;
+
+}

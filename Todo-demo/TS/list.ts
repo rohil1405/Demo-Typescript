@@ -1,3 +1,5 @@
+
+
 const logOut = document.getElementById('logout') as HTMLButtonElement;
 const main = document.getElementById('data') as HTMLDivElement;
 const loader = document.getElementById('loader') as HTMLDivElement;
@@ -14,26 +16,24 @@ interface Product {
     rating: number;
     description: string;
 }
-
-async function fetchData(): Promise<{ products: Product[] }> {
+const allDataApi: string = "https://dummyjson.com/products";
+async function fetchData(api: string = allDataApi): Promise<{ products: Product[] }> {
     const limitValue = limit.value;
 
     let url;
     if (limitValue !== ' ') {
         url = `https://dummyjson.com/products?limit=${limitValue}`;
     } else {
-        url = `https://dummyjson.com/products`;
+        url = allDataApi;
     }
-
-    const response = await fetch(url);
+    const response = await fetch(api);
     const data = await response.json();
-    return data
+    return data;
 }
 
-async function processData(products?: Product[]) {
+async function processData(api: string = allDataApi, searchData: Product[] | null = null): Promise<void> {
     try {
-        const response = await fetchData();
-
+        const response = await fetchData(api);
         let orderby: Product[];
         let filterData = filter.value.trim();
 
@@ -41,6 +41,10 @@ async function processData(products?: Product[]) {
             orderby = response.products.reverse();
         } else {
             orderby = response.products;
+        }
+
+        if (searchData != null) {
+            orderby = searchData;
         }
 
         if (typeof orderby === 'object') {
@@ -62,39 +66,41 @@ async function processData(products?: Product[]) {
     }
 }
 processData();
+
 async function searchProduct(): Promise<void> {
     try {
-        const result = await fetchData();
-        const filterData = searchData.value.toLowerCase();
+        const result = await fetchData(allDataApi);
 
-        const search = result.products.filter((product) =>
-            product.title.toLowerCase().includes(filterData)
+        let filterData = result.products.filter(
+            ele => ele.title.toLowerCase().includes(searchData.value.toLowerCase())
         );
-
-        processData(search);
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-async function categoryData(): Promise<void> {
-    try {
         loader.style.display = 'block';
 
-        const categoryProduct = category.value.toLowerCase();
-        const data = await fetch(`https://dummyjson.com/products/category/${categoryProduct}`);
-        const result = await data.json();
-
-        processData(result.products);
+        processData(allDataApi, filterData);;
     } catch (error) {
         console.error(error);
-    } finally {
-        loader.style.display = 'none';
     }
 }
 searchData.addEventListener('input', searchProduct);
-category.addEventListener('change', categoryData);
-
+category.addEventListener('change', function () {
+    {
+        try {
+            loader.style.display = 'block';
+            let filterUrl: string;
+            if (category.value !== 'all') {
+                filterUrl = `https://dummyjson.com/products/category/${category.value}`;
+                console.log(filterUrl);
+            } else {
+                filterUrl = allDataApi;
+            }
+            processData(filterUrl);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            loader.style.display = 'none';
+        }
+    }
+})
 
 function showProduct(productId: number): void {
     location.href = `details.html?id=${productId}`
@@ -104,5 +110,13 @@ logOut.addEventListener('click', function (): void {
     alert('Are you sure..!!');
     location.href = 'login.html';
 });
+
+function showCartLength(): void {
+    const cartTotal = document.getElementById('cartTotal') as HTMLSpanElement;
+    const cartLength = JSON.parse(localStorage.getItem('cart') || '[]').length;
+    cartTotal.textContent = cartLength.toString();
+}
+
+showCartLength();
 
 

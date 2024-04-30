@@ -1,6 +1,10 @@
 const main = document.getElementById('data') as HTMLDivElement;
 const loader = document.getElementById('loader') as HTMLDivElement;
 const search = document.getElementById('search') as HTMLInputElement;
+const more = document.getElementById('more') as HTMLButtonElement;
+// const less = document.getElementById('less') as HTMLButtonElement;
+
+let offset = 0;;
 
 interface Data {
     id: string,
@@ -12,8 +16,8 @@ interface Data {
     title: string
 }
 
-function fetchData(): Promise<{ data: Data[] }> {
-    return fetch('https://api.giphy.com/v1/gifs/trending?api_key=YTFE0cCtsJbs2quOA2XY1Jeide9uhLnC&limit=25&offset=0&rating=g&bundle=messaging_non_clips')
+function fetchData(offset: number): Promise<{ data: Data[] }> {
+    return fetch(`https://api.giphy.com/v1/gifs/trending?api_key=EUfHXHggYysp6rmoM1UEzELLuE1Z5pLK&limit=25&offset=${offset}&rating=g&bundle=messaging_non_clips`)
         .then(response => response.json());
 }
 
@@ -40,17 +44,19 @@ function processData(data: Data[]) {
 
 function filterData(data: Data[], timeout = 300) {
     let timer;
-    
-    const filteredData: Data[] = data.filter(({ title }) => title.toLowerCase().includes(search.value.toLowerCase()));
+
+    const filteredData: Data[] = data.filter(
+        ({ title }) => title.toLowerCase().includes(search.value.toLowerCase())
+    );
     main.innerHTML = '';
     clearTimeout(timer);
-    timer = setTimeout(() => {
+    timer = setTimeout((): void => {
         processData(filteredData);
-     }, timeout)   
+    }, timeout)
 }
 
-function display() {
-    fetchData()
+function display(): void {
+    fetchData(offset)
         .then(response => {
             processData(response.data);
             search.addEventListener('change', () => filterData(response.data));
@@ -59,4 +65,23 @@ function display() {
         .catch(error => console.error(error));
 }
 
-// display();
+display();
+
+more.addEventListener('click', function (): void {
+    offset += 10;
+    fetchData(offset)
+        .then(response => {
+            processData(response.data);
+        })
+        .catch(error => console.error(error));
+});
+
+// less.addEventListener('click', function (): void {
+//     limit -= 10;
+//     fetchData(limit)
+//         .then(response => {
+//             processData(response.data);
+//         })
+//         .catch(error => console.error(error));
+// })
+

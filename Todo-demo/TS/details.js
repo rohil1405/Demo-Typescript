@@ -59,5 +59,7 @@ function goback() {
 }
 function addtocart() {
     location.href = `list.html`;
+    add();
+    updateCartCount();
 }
 infoProduct();

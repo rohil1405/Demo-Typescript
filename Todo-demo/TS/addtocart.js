@@ -10,11 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 const cartData = document.getElementById('data');
 const totalprice = document.getElementById('totalPrice');
-const home = document.getElementById('home');
-const cartTotal = document.getElementById('cartTotal');
 const loadermain = document.getElementById('loader');
 let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-let cartCounter = 0;
 function getProduct() {
     return __awaiter(this, void 0, void 0, function* () {
         const response = yield fetch(`https://dummyjson.com/products`);
@@ -45,7 +42,7 @@ function add() {
             }
             localStorage.setItem('cart', JSON.stringify(cart));
             displayCart();
-            updateCartCount(1);
+            updateCartCount();
         }
         catch (error) {
             console.error(error);
@@ -55,9 +52,10 @@ function add() {
         }
     });
 }
-function updateCartCount(change) {
-    cartCounter += change;
-    cartTotal.textContent = cartCounter.toString();
+function updateCartCount() {
+    const cartTotal = document.getElementById('cartTotal');
+    let cartCounter = cart.reduce((total, item) => total + item.quantity, 0);
+    console.log(cartCounter.toString());
 }
 function displayCart() {
     const updatedcart = cart.filter(item => item.quantity > 0 && item.price > 0);
@@ -80,25 +78,24 @@ function displayCart() {
     totalprice.textContent = `Total Price: $${totalPrice}`;
     localStorage.setItem("cart", JSON.stringify(updatedcart));
 }
-home.addEventListener('click', () => {
-    location.href = 'list.html';
-});
 function removeCart(index) {
     cart[index].quantity = 0;
     localStorage.setItem('cart', JSON.stringify(cart));
     displayCart();
-    updateCartCount(-1);
+    updateCartCount();
 }
 function addQ(index) {
     cart[index].quantity++;
     localStorage.setItem("cart", JSON.stringify(cart));
     displayCart();
+    updateCartCount();
 }
 function subQ(index) {
     if (cart[index].quantity > 0) {
         cart[index].quantity--;
         localStorage.setItem('cart', JSON.stringify(cart));
         displayCart();
+        updateCartCount();
     }
 }
 add();

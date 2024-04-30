@@ -1,8 +1,12 @@
 var main = document.getElementById('data');
 var loader = document.getElementById('loader');
 var search = document.getElementById('search');
-function fetchData() {
-    return fetch('https://api.giphy.com/v1/gifs/trending?api_key=YTFE0cCtsJbs2quOA2XY1Jeide9uhLnC&limit=25&offset=0&rating=g&bundle=messaging_non_clips')
+var more = document.getElementById('more');
+// const less = document.getElementById('less') as HTMLButtonElement;
+var offset = 0;
+;
+function fetchData(offset) {
+    return fetch("https://api.giphy.com/v1/gifs/trending?api_key=EUfHXHggYysp6rmoM1UEzELLuE1Z5pLK&limit=25&offset=".concat(offset, "&rating=g&bundle=messaging_non_clips"))
         .then(function (response) { return response.json(); });
 }
 function processData(data) {
@@ -21,18 +25,18 @@ function processData(data) {
 function filterData(data, timeout) {
     if (timeout === void 0) { timeout = 300; }
     var timer;
-    clearTimeout(timer);
-    timer = setTimeout(function () {
-    }, timeout);
     var filteredData = data.filter(function (_a) {
         var title = _a.title;
         return title.toLowerCase().includes(search.value.toLowerCase());
     });
     main.innerHTML = '';
-    processData(filteredData);
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+        processData(filteredData);
+    }, timeout);
 }
 function display() {
-    fetchData()
+    fetchData(offset)
         .then(function (response) {
         processData(response.data);
         search.addEventListener('change', function () { return filterData(response.data); });
@@ -40,4 +44,20 @@ function display() {
     })
         .catch(function (error) { return console.error(error); });
 }
-// display();
+display();
+more.addEventListener('click', function () {
+    offset += 10;
+    fetchData(offset)
+        .then(function (response) {
+        processData(response.data);
+    })
+        .catch(function (error) { return console.error(error); });
+});
+// less.addEventListener('click', function (): void {
+//     limit -= 10;
+//     fetchData(limit)
+//         .then(response => {
+//             processData(response.data);
+//         })
+//         .catch(error => console.error(error));
+// })

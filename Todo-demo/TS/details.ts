@@ -58,6 +58,10 @@ function goback(): void {
 
 function addtocart(): void {
     location.href = `list.html`;
+        add();
+        updateCartCount();
+    
+    
 }
 
 infoProduct();

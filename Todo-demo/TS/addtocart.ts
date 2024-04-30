@@ -10,12 +10,9 @@ interface CartItem {
 
 const cartData = document.getElementById('data') as HTMLTableElement;
 const totalprice = document.getElementById('totalPrice') as HTMLParagraphElement;
-const home = document.getElementById('home') as HTMLButtonElement;
-const cartTotal = document.getElementById('cartTotal') as HTMLSpanElement;
 const loadermain = document.getElementById('loader') as HTMLDivElement;
 
 let cart: CartItem[] = JSON.parse(localStorage.getItem('cart') || '[]');
-let cartCounter: number = 0;
 
 async function getProduct(): Promise<any> {
     const response = await fetch(`https://dummyjson.com/products`);
@@ -47,7 +44,7 @@ async function add(): Promise<void> {
 
         localStorage.setItem('cart', JSON.stringify(cart));
         displayCart();
-        updateCartCount(1); 
+        updateCartCount();
     } catch (error) {
         console.error(error);
     } finally {
@@ -55,9 +52,10 @@ async function add(): Promise<void> {
     }
 }
 
-function updateCartCount(change: number): void {
-    cartCounter += change;
-    cartTotal.textContent = cartCounter.toString();
+function updateCartCount(): void {
+    const cartTotal = document.getElementById('cartTotal') as HTMLSpanElement;
+    let cartCounter: number = cart.reduce((total, item) => total + item.quantity, 0);
+    console.log(cartCounter.toString());
 }
 
 function displayCart(): void {
@@ -84,21 +82,18 @@ function displayCart(): void {
     localStorage.setItem("cart", JSON.stringify(updatedcart));
 }
 
-home.addEventListener('click', () => {
-    location.href = 'list.html';
-});
-
 function removeCart(index: number): void {
     cart[index].quantity = 0;
     localStorage.setItem('cart', JSON.stringify(cart));
     displayCart();
-    updateCartCount(-1);
+    updateCartCount();
 }
 
 function addQ(index: number): void {
     cart[index].quantity++;
     localStorage.setItem("cart", JSON.stringify(cart));
     displayCart();
+    updateCartCount();
 }
 
 function subQ(index: number): void {
@@ -106,6 +101,7 @@ function subQ(index: number): void {
         cart[index].quantity--;
         localStorage.setItem('cart', JSON.stringify(cart));
         displayCart();
+        updateCartCount();
     }
 }
 

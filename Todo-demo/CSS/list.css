@@ -53,7 +53,7 @@ header {
     border-radius: 7px;
     align-items: center;
     font-size: 16px;
-    width: 60px;
+    width: 70px;
     margin-right: 50px;
     padding: 6px;
 }
@@ -125,15 +125,19 @@ img {
     0% {
         transform: rotate(0deg);
     }
+
     25% {
         transform: rotate(60deg);
     }
+
     50% {
         transform: rotate(120deg);
     }
+
     75% {
         transform: rotate(240deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
